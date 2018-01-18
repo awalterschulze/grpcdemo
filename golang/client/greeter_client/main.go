@@ -21,9 +21,9 @@ package main
 import (
 	"log"
 
+	pb "github.com/awalterschulze/grpcdemo/golang/client/helloworld"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	pb "google.golang.org/grpc/examples/helloworld/helloworld"
 )
 
 func main() {

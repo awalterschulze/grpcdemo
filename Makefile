@@ -7,19 +7,19 @@ stop-python-server:
 	(cd python && docker stop python-server-grpc-container)
 
 run-go-client:
-	(cd golang && \
-		docker build -t golang-grpc-image . && \
+	(cd golang/client && \
+		docker build -t golang-grpc-client-image . && \
 		docker run --rm=true --name golang-client-grpc-container --user="$(id -u):$(id -g)" \
-		--volume=`pwd`/client:/go/src/google.golang.org/grpc/examples/helloworld \
-		-i -t --network=host golang-grpc-image ./run.sh)
+		--volume=`pwd`:/go/src/github.com/awalterschulze/grpcdemo/golang/client \
+		-i -t --network=host golang-grpc-client-image ./run.sh)
 
 run-go-server:
-	(cd golang && \
-		docker build -t golang-grpc-image . && \
+	(cd golang/server && \
+		docker build -t golang-grpc-server-image . && \
 		docker run --rm=true --name golang-server-grpc-container --user="$(id -u):$(id -g)" \
-		--volume=`pwd`/server:/go/src/google.golang.org/grpc/examples/helloworld \
+		--volume=`pwd`:/go/src/github.com/awalterschulze/grpcdemo/golang/server \
 		-d -p 50051:50051 \
-		-i -t --network=host golang-grpc-image ./run.sh)
+		-i -t --network=host golang-grpc-server-image ./run.sh)
 
 stop-go-server:
-	(cd golang && docker stop  golang-server-grpc-container)
+	(cd golang && docker stop golang-server-grpc-container)
