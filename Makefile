@@ -22,4 +22,26 @@ run-go-server:
 		-i -t --network=host golang-grpc-server-image ./run.sh)
 
 stop-go-server:
-	(cd golang && docker stop golang-server-grpc-container)
+	(cd golang/server && docker stop golang-server-grpc-container)
+
+run-gateway-client:
+	(cd gateway/client && \
+		docker build -t gateway-grpc-client-image . && \
+		docker run --rm=true --name gateway-client-grpc-container --user="$(id -u):$(id -g)" \
+		--volume=`pwd`:/go/src/github.com/awalterschulze/grpcdemo/gateway/client \
+		-i -t --network=host gateway-grpc-client-image ./run.sh)
+
+run-gateway-server:
+	(cd gateway/server && \
+		docker build -t gateway-grpc-server-image . && \
+		docker run --name gateway-server-grpc-container --user="$(id -u):$(id -g)" \
+		--volume=`pwd`:/go/src/github.com/awalterschulze/grpcdemo/gateway/server \
+		-d \
+		--rm=true \
+		-p 9123:9123 \
+		-i -t --network=host gateway-grpc-server-image ./run.sh)
+
+# -p 50051:50051
+
+stop-gateway-server:
+	(cd gateway/server && docker stop gateway-server-grpc-container)
