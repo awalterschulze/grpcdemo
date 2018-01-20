@@ -42,4 +42,4 @@ The client in this case is a simple curl
 $ curl -X POST -k http://localhost:9123/v1/helloworld/sayhello -H "Content-Type: text/plain" -d '{"name": "old school"}'
 ```
 
-You can see the output swagger in [gateway/server/helloworld/helloworld.swagger.json](https://github.com/awalterschulze/grpcdemo/blob/master/gateway/server/helloworld/helloworld.swagger.json)
+You can see the output swagger in [gateway/server/helloworld/helloworld.swagger.json](https://raw.githubusercontent.com/awalterschulze/grpcdemo/master/gateway/server/helloworld/helloworld.swagger.json)
