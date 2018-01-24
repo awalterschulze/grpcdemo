@@ -19,6 +19,7 @@
 package main
 
 import (
+	"flag"
 	"log"
 
 	pb "github.com/awalterschulze/grpcdemo/golang/client/helloworld"
@@ -27,8 +28,10 @@ import (
 )
 
 func main() {
+	addr := flag.String("addr", "", "")
+	flag.Parse()
 	// Set up a connection to the server.
-	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
+	conn, err := grpc.Dial(*addr+":50051", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}

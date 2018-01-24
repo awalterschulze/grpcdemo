@@ -1,0 +1,26 @@
+version: "2"
+
+services:
+  python-server-grpc:
+    build: ./python/
+    restart: always
+    ports:
+      - "50051:50051"
+
+  go-server-grpc:
+    build: ./golang/server/
+    restart: always
+    volumes: 
+      - ./golang/server/:/go/src/github.com/awalterschulze/grpcdemo/golang/server
+    ports:
+      - "50051:50051"
+    command: "./run.sh"
+
+  gateway-server:
+    build: ./gateway/server/
+    restart: always
+    volumes:
+      - ./gateway/server/:/go/src/github.com/awalterschulze/grpcdemo/gateway/server
+    ports:
+      - "9123:9123"
+    command: "./run.sh"
