@@ -24,3 +24,12 @@ services:
     ports:
       - "9123:9123"
     command: "./run.sh"
+
+  streaming-server:
+    build: ./streaming/server/
+    restart: always
+    volumes:
+      - ./streaming/server/:/go/src/github.com/awalterschulze/grpcdemo/streaming/server
+    ports:
+      - "50051:50051"
+    command: "./run.sh"

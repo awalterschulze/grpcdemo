@@ -43,3 +43,16 @@ $ curl -X POST -k http://localhost:9123/v1/helloworld/sayhello -H "Content-Type:
 ```
 
 You can see the output swagger in [gateway/server/helloworld/helloworld.swagger.json](https://raw.githubusercontent.com/awalterschulze/grpcdemo/master/gateway/server/helloworld/helloworld.swagger.json)
+
+
+## Streaming Demo
+
+```
+$ make run-streaming-server
+$ make run-streaming-client
+$ make stop-streaming-server
+```
+
+The client expects you to type in multiple names and separated by newline characters.
+The server will then send back three messages each with a 5 second delay.
+
