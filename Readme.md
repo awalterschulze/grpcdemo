@@ -3,7 +3,7 @@
 A GRPC Demo using the Go and Python examples, but running them in dockers.
 This also includes a demo with grpc-gateway in the gateway folder.
 
-The slides for the presentation can be found [here](https://slides.com/walterschulze/grpc-api)
+The slides for the presentation can be found [here](https://slides.com/awalterschulze/grpc-api)
 
 ## Cross language Demo
 
